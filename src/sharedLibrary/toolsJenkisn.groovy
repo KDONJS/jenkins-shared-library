@@ -3,7 +3,7 @@ package sharedLibrary
 class toolsJenkisn extends baseUtil{
 
     def call(String name) {
-        sh script: 'ls', returnStatus: true
+        steps.echo "Hello ${name}"
     }
     
     //metodo de caputura de errores
