@@ -1,9 +1,9 @@
 package sharedLibrary
 
-class toolsJenkisn {
+class toolsJenkisn extends baseUtil{
 
     def call(String name) {
-        println "Hola ${name}"
+        this.printMessage("Hello ${name}")
     }
 
 }
