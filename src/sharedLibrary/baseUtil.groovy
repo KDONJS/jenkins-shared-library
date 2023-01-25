@@ -1,6 +1,6 @@
 package sharedLibrary
 
-class baseUtil extends helper{
+class baseUtil{
 
     private Script script
 
@@ -10,5 +10,11 @@ class baseUtil extends helper{
 
     def printMessage(String message) {
         this.script.echo "[KDON-DevSecOps] ${message}"
+    }
+}
+
+class Script {
+    void echo(String message) {
+        println(message)
     }
 }
