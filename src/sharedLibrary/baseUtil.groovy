@@ -1,6 +1,6 @@
 package sharedLibrary
 
-class baseUtil{
+class baseUtil extends Script{
 
     private Script script
 
