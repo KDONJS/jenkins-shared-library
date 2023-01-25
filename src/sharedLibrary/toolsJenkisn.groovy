@@ -8,8 +8,13 @@ class toolsJenkisn implements Serializable{
         this.steps = steps
     }
 
+    def printMessage(String message) {
+        steps.echo "[KDON-DevSecOps]: ${message}"
+    }
+
     def call(String name) {
-        steps.echo "Hello ${name}"
+        this.printMessage("Hola ${name}")
+        this.printMessage("Nombre del job: ${steps.env.JOB_NAME}")
     }
     
     //metodo de caputura de errores
