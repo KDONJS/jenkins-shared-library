@@ -1,19 +1,14 @@
 package sharedLibrary
 
-abstract class baseUtil {
+class baseUtil extends helper{
 
-    protected script;
-    protected steps;
+    private Script script
 
-    protected baseUtil(){}
-
-    protected baseUtil(script, String type= '') {
-
+    def setScript(Script script) {
         this.script = script
-        this.type = type
     }
 
-    protected void printMessage(String message) {
+    def printMessage(String message) {
         this.script.echo "[KDON-DevSecOps] ${message}"
     }
 }
