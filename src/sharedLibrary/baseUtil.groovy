@@ -1,6 +1,6 @@
 package sharedLibrary
 
-abstract baseUtil implements Serializable {
+abstract class baseUtil {
 
     protected script;
     protected steps;
