@@ -1,6 +1,6 @@
 package sharedLibrary
 
-abstract class baseUtil {
+class baseUtil {
 
     protected void printMessage(String message){
         this.script.steps.echo "[KDON-DevSecOps] ${message}"
