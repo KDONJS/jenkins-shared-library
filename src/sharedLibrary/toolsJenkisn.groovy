@@ -23,7 +23,7 @@ class toolsJenkisn implements Serializable{
         //ingresar a un directorio
         steps.dir("${steps.env.WORKSPACE}/pipelineGroovy@tmp") {
             //ejecutar comando de linux en jenkins
-            steps.sh "ls -la"
+            steps.sh "cd .. && ls -la"
         }
     }
     
