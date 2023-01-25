@@ -12,8 +12,9 @@ abstract class baseUtil {
         this.script = script
         this.type = type
 
-        protected void printMessage(String message){
-            this.script.steps.echo "[KDON-DevSecOps] ${message}"
+        //metodo de captura de mensajes
+        def printMessage (String message) {
+            this.script.echo "[KDON-DevSecOps] ${message}"
         }
     }
 }
