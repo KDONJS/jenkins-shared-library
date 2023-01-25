@@ -2,6 +2,7 @@ package sharedLibrary
 
 class toolsJenkisn {
     def call(String name) {
-        print "Hello ${name}!"
+        //mostrar el nombre
+        println "Hola ${name}"
     }
 }
