@@ -1,6 +1,12 @@
 package sharedLibrary
 
-class toolsJenkisn extends baseUtil{
+class toolsJenkisn implements Serializable{
+
+    def steps
+
+    toolsJenkisn(steps) {
+        this.steps = steps
+    }
 
     def call(String name) {
         steps.echo "Hello ${name}"
