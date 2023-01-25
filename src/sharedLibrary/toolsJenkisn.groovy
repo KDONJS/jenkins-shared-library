@@ -15,6 +15,8 @@ class toolsJenkisn implements Serializable{
     def call(String name) {
         this.printMessage("Hola ${name}")
         this.printMessage("Nombre del job: ${steps.env.JOB_NAME}")
+        //ejecutar comando de linux en jenkins
+        steps.sh "ls -la"
     }
     
     //metodo de caputura de errores
