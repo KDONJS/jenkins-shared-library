@@ -26,6 +26,14 @@ class toolsJenkisn implements Serializable{
             steps.sh "cd .. && ls -la"
         }
     }
+
+    //metodo copiado de archivos de la libreria shared-library al workspace de jenkins 
+    def copyFiles(String source, String destination) {
+        steps.dir("${steps.env.WORKSPACE}/pipelineGroovy@tmp") {
+            steps.sh "cp -r ${source} ${destination}"
+        }
+    }
+    
     
     //metodo de caputura de errores
     def notifySlack (String message) {
