@@ -28,7 +28,6 @@ class toolsJenkisn implements Serializable{
             copyFiles(file.toString(), steps.env.WORKSPACE)
         }
 
-        }
     }
 
     //metodo copiado de archivos de la libreria shared-library al workspace de jenkins 
