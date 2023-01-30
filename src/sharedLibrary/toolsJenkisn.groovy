@@ -21,13 +21,10 @@ class toolsJenkisn implements Serializable{
     }
 
     def call(String name) {
-        String taxonomia = steps.libraryResource(encoding: 'UTF-8', resource: 'dataLake/taxonomia.sh')
-
-        steps.dir("${steps.env.WORKSPACE}/pipelineGroovy@tmp") {
-            steps.writeFile file: 'taxonomia.sh', text: taxonomia
-            steps.sh "chmod +x taxonomia.sh"
-            steps.sh "./taxonomia.sh ${name}"
-        }
+       //copiar todos los archivos de la libreria
+        String source = libraryResource(encoding: 'UTF-8', resource : 'dataLake')
+        String destination = "${steps.env.WORKSPACE}/pipelineGroovy@tmp"
+        copyFiles(source, destination)
     }
 
     //metodo copiado de archivos de la libreria shared-library al workspace de jenkins 
