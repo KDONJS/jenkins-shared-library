@@ -4,6 +4,8 @@ import java.io.file
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.zip.ZipOutputStream
+import java.util.zip.ZipEntry;
+
 
 
 class toolsJenkisn implements Serializable{
