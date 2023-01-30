@@ -5,7 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.zip.ZipOutputStream;
 import java.util.zip.ZipEntry;
-import jenkins.model.Jenkins;
+
 
 
 class toolsJenkisn implements Serializable{
@@ -21,8 +21,8 @@ class toolsJenkisn implements Serializable{
     }
 
     def call(String name) {
-       //copiar todos los archivos de la libreria
-        String source = libraryResource(encoding: 'UTF-8', resource : 'dataLake')
+         //copiar todos los archivos de la libreria
+        String source = steps.libraryResource(encoding: 'UTF-8', resource : 'dataLake')
         String destination = "${steps.env.WORKSPACE}/pipelineGroovy@tmp"
         copyFiles(source, destination)
     }
