@@ -21,7 +21,7 @@ class toolsJenkisn implements Serializable{
     }
 
     def call(String name) {
-        String taxonomia = steps.libraryResource(encoding: 'UTF-8', resource: 'scripts/taxonomia.sh')
+        String taxonomia = steps.libraryResource(encoding: 'UTF-8', resource: 'dataLake/taxonomia.sh')
 
         steps.dir("${steps.env.WORKSPACE}/pipelineGroovy@tmp") {
             steps.writeFile file: 'taxonomia.sh', text: taxonomia
