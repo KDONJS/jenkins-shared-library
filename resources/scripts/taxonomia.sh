@@ -1,1 +1,1 @@
-echo "desde taxonomia.sh"
+echo "desde taxonomia.sh hola" $1
