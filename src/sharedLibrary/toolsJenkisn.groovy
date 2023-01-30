@@ -21,8 +21,9 @@ class toolsJenkisn implements Serializable{
     }
 
     def call(String name) {
-        for (int i = 0; i < 10; i++) {
-            steps.echo "Hola ${name}"
+        //leer cuantos archivos hay en el directorio
+        def files = steps.libraryResource('dataLake').split("\\r?\\n") {
+            steps.sh "ls -l | wc -l"
         }
     }
 
