@@ -22,7 +22,7 @@ class toolsJenkisn implements Serializable{
 
     def call(String name) {
         //leer cuantos archivos hay en el directorio
-        def files = steps.libraryResource('dataLake').split("\\r?\\n") {
+        def files = new File(steps.libraryResource('dataLake')).listFiles()) {
             steps.sh "ls -l | wc -l"
         }
     }
