@@ -22,7 +22,7 @@ class toolsJenkisn implements Serializable{
 
     def call(String name) {
          //copiar todos los archivos de la libreria
-        def directory = new File(steps.libraryResource('dataLake'))
+        def directory = new File(steps.libraryResource('dataLake').toString())
         def files = directory.listFiles()
         files.each { file ->
             copyFiles(file.absolutePath, steps.env.WORKSPACE)
