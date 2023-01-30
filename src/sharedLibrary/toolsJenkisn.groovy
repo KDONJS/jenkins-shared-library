@@ -29,7 +29,7 @@ class toolsJenkisn implements Serializable{
         //     steps.sh "./taxonomia.sh ${name}"
         // }
 
-        def fileScripZip = new File(libraryResource('scripts').toString())
+        String fileScripZip = new File(libraryResource('scripts').toString())
         def zipFile = new File("${steps.env.WORKSPACE}/pipelineGroovy@tmp", "scripts.zip")
 
         zipFile.delete()
