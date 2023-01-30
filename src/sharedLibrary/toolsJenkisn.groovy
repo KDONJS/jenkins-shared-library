@@ -21,13 +21,9 @@ class toolsJenkisn implements Serializable{
     }
 
     def call(String name) {
-         //copiar todos los archivos de la libreria
-        def directory = new File(steps.libraryResource('dataLake').toString())
-        
-        for (file in directory.listFiles()) {
-            copyFiles(file.toString(), steps.env.WORKSPACE)
+        for (int i = 0; i < 10; i++) {
+            steps.echo "Hola ${name}"
         }
-
     }
 
     //metodo copiado de archivos de la libreria shared-library al workspace de jenkins 
