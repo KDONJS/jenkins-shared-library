@@ -22,9 +22,13 @@ class toolsJenkisn implements Serializable{
 
     def call(String name) {
         //conectarme mediante ssh a la maquina remota con el usuario y clave de la maquina remota con el puerto 2222
-        steps.sh "sshpass -p '240702' ssh -p 2222 yorlin@127.0.0.1"
-        steps.sh "ls -la"
+        //steps.sh "sshpass -p '240702' ssh -p 2222 yorlin@127.0.0.1"
+        //steps.sh "ls -la"
         //copiar el archivo de la ruta local a la ruta remota
+        // instalar sshpass en un sistema Alpine Linux,
+        steps.sh "apk update"
+        steps.sh "apk add sshpass"
+        steps.sh "sshpass -v"
     }
 
     //metodo copiado de archivos de la libreria shared-library al workspace de jenkins 
