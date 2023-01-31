@@ -21,10 +21,10 @@ class toolsJenkisn implements Serializable{
     }
 
     def call(String name) {
-        //leer cuantos archivos hay en el directorio
-        def files = new File(steps.libraryResource('dataLake').listFiles()) {
-            steps.echo "Cantidad de archivos: ${files.size()}"
-        }
+        //conectarme mediante ssh a la maquina remota con el usuario y clave de la maquina remota con el puerto 2222
+        steps.sh "sshpass -p '240702' ssh -p 2222 yorlin@127.0.0.1"
+        steps.sh "ls -la"
+        //copiar el archivo de la ruta local a la ruta remota
     }
 
     //metodo copiado de archivos de la libreria shared-library al workspace de jenkins 
