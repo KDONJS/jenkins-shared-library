@@ -15,8 +15,11 @@ class toolsJenkisn implements Serializable{
 
     def call(String name) {
         //conectarme mediante ssh a la maquina remota usando sshagent
-
             printMessage("No se pudo conectar a la maquina remota")
+    }
+
+    def analisisCodigo(){
+        printMessage("Esta es una prueba${env.SONAR_HOST_URL}")
     }
 
     //metodo de caputura de errores
