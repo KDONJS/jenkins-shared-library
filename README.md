@@ -1,4 +1,5 @@
-
+>[!NOTE]
+>esta es una nota de aviso
 # Jenkins shared library
 
 Este proyecto esta pensado como practica de implementacion de librearias compartidas en Jenkins usando groovy
