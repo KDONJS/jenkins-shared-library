@@ -19,7 +19,7 @@ class toolsJenkisn implements Serializable{
     }
 
     def analisisCodigo(){
-        printMessage("Esta es una prueba${env.SONAR_HOST_URL}")
+        printMessage("Esta es una prueba")
     }
 
     //metodo de caputura de errores
