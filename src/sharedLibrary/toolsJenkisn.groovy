@@ -7,11 +7,8 @@ class toolsJenkisn implements Serializable{
     def steps
     def script
 
-    toolsJenkisn(steps) {
+    toolsJenkisn(steps, script) {
         this.steps = steps
-    }
-
-    toolsJenkisn(script) {
         this.script = script
     }
 
@@ -37,7 +34,7 @@ class toolsJenkisn implements Serializable{
     def connectSSH(String credentialsId, String remoteHost) {
         def username
         def privateKey
-        
+
         // Obtener credenciales desde Jenkins Vault
         script.withCredentials([[$class: 'SSHUserPrivateKeyBinding', credentialsId: credentialsId, variable: 'SSH_KEY']]) {
             username = steps.sh(script: "echo \$SSH_USER", returnStdout: true).trim()
