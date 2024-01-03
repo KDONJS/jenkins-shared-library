@@ -33,20 +33,32 @@ class toolsJenkisn implements Serializable{
         print "[KDON-DevSecOps] ${message}"
     }
 
+    // Método para obtener credenciales y establecer conexión SSH
     def connectSSH(String credentialsId, String remoteHost) {
-        script.withCredentials([script[$class: 'SSHUserPrivateKeyBinding', credentialsId: credentialsId, variable: 'SSH_KEY']]) {
-            def username = script.sh(script: "echo \$SSH_USER", returnStdout: true).trim()
-            def privateKey = script.sh(script: "echo \$SSH_KEY", returnStdout: true).trim()
+        def username
+        def privateKey
+        
+        // Obtener credenciales desde Jenkins Vault
+        script.withCredentials([[$class: 'SSHUserPrivateKeyBinding', credentialsId: credentialsId, variable: 'SSH_KEY']]) {
+            username = steps.sh(script: "echo \$SSH_USER", returnStdout: true).trim()
+            privateKey = steps.sh(script: "echo \$SSH_KEY", returnStdout: true).trim()
+        }
 
-            try {
-                script.sshagent(credentials: [credentialsId]) {
-                    script.sh "ssh -o StrictHostKeyChecking=no ${username}@${remoteHost} 'echo connected'"
-                }
-                printMessage("Conexión SSH establecida con éxito")
-            } catch (Exception e) {
-                printMessage("Error al conectar: ${e.message}")
-                notifySlack("Error en conexión SSH: ${e.message}")
+        // Establecer conexión SSH y ejecutar comandos
+        try {
+            def remote = [:]
+            remote.name = 'remoteHost'
+            remote.host = remoteHost
+            remote.user = username
+            remote.allowAnyHosts = true
+            remote.identityFile = privateKey
+            steps.sshagent(credentials: [credentialsId]) {
+                steps.sh "ssh -o StrictHostKeyChecking=no ${username}@${remoteHost} 'echo connected'"
             }
+            printMessage("Conexión SSH establecida con éxito")
+        } catch (Exception e) {
+            printMessage("Error al conectar: ${e.message}")
+            notifySlack("Error en conexión SSH: ${e.message}")
         }
     }
 
