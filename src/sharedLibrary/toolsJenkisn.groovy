@@ -38,21 +38,9 @@ class toolsJenkisn implements Serializable{
         this.printMessage("Id de credencial: ${credentialsId} host remoto: ${remoteHost}")
 
         // Obtener credenciales desde Jenkins Vault
-        script.withCredentials([script.usernamePassword(credentialsId: credentialsId, usernameVariable: 'SSH_USER', passwordVariable: 'SSH_KEY')]) {
-            username = steps.sh(script: "echo \$SSH_USER", returnStdout: true).trim()
-            privateKey = steps.sh(script: "echo \$SSH_KEY", returnStdout: true).trim()
-        }
-
-        // Establecer conexión SSH y ejecutar comandos
         try {
-            def remote = [:]
-            remote.name = 'remoteHost'
-            remote.host = remoteHost
-            remote.user = username
-            remote.allowAnyHosts = true
-            remote.identityFile = privateKey
             steps.sshagent(credentials: [credentialsId]) {
-                steps.sh "ssh -o StrictHostKeyChecking=no ${username}@${remoteHost} 'echo connected'"
+                steps.sh "ssh -o StrictHostKeyChecking=no -l \$SSH_USER ${remoteHost} 'echo connected'"
             }
             printMessage("Conexión SSH establecida con éxito")
         } catch (Exception e) {
