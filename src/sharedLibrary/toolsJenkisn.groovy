@@ -1,5 +1,6 @@
 package sharedLibrary
 
+import hudson.util.Secret
 
 class toolsJenkisn implements Serializable{
 
@@ -14,7 +15,7 @@ class toolsJenkisn implements Serializable{
     }
 
     def call(String name) {
-        //conectarme mediante ssh a la maquina remota usando sshagent
+
             printMessage("No se pudo conectar a la maquina remota")
     }
 
@@ -25,6 +26,35 @@ class toolsJenkisn implements Serializable{
     //metodo de caputura de errores
     def notifySlack (String message) {
         print "[KDON-DevSecOps] ${message}"
+    }
+
+        // Método para obtener credenciales y establecer conexión SSH
+    def connectSSH(String credentialsId, String remoteHost) {
+        def username
+        def privateKey
+
+        // Obtener credenciales desde Jenkins Vault
+        withCredentials([[$class: 'SSHUserPrivateKeyBinding', credentialsId: credentialsId, variable: 'SSH_KEY']]) {
+            username = steps.sh(script: "echo \$SSH_USER", returnStdout: true).trim()
+            privateKey = steps.sh(script: "echo \$SSH_KEY", returnStdout: true).trim()
+        }
+
+        // Establecer conexión SSH y ejecutar comandos
+        try {
+            def remote = [:]
+            remote.name = 'remoteHost'
+            remote.host = remoteHost
+            remote.user = username
+            remote.allowAnyHosts = true
+            remote.identityFile = privateKey
+            steps.sshagent(credentials: [credentialsId]) {
+                steps.sh "ssh -o StrictHostKeyChecking=no ${username}@${remoteHost} 'echo connected'"
+            }
+            printMessage("Conexión SSH establecida con éxito")
+        } catch (Exception e) {
+            printMessage("Error al conectar: ${e.message}")
+            notifySlack("Error en conexión SSH: ${e.message}")
+        }
     }
 
 }
