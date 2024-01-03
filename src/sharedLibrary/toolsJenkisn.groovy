@@ -35,6 +35,8 @@ class toolsJenkisn implements Serializable{
         def username
         def privateKey
 
+        this.printMessage("Id de credencial: ${credentialsId} host remoto: ${remoteHost}")
+
         // Obtener credenciales desde Jenkins Vault
         script.withCredentials([[$class: 'SSHUserPrivateKeyBinding', credentialsId: credentialsId, variable: 'SSH_KEY']]) {
             username = steps.sh(script: "echo \$SSH_USER", returnStdout: true).trim()
