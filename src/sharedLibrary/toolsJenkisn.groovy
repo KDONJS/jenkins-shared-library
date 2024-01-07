@@ -22,7 +22,7 @@ class toolsJenkisn implements Serializable{
     }
 
     def analisisCodigo(){
-        printMessage("Esta es una prueba")
+        printMessage("esta es la feature de alfredo")
     }
 
     //metodo de caputura de errores
