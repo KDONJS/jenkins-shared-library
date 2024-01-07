@@ -17,7 +17,7 @@ class toolsJenkisn implements Serializable{
     }
 
     def callToActions(String name) {
-        this.printMessage("${env.WORKSPACE}")
+        this.printMessage("${WORKSPACE}")
     }
 
 }
