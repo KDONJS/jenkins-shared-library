@@ -8,7 +8,7 @@ class toolsJenkisn implements Serializable{
     def script
     def env
 
-    toolsJenkisn(steps, script) {
+    toolsJenkisn(steps, script, env) {
         this.steps = steps
         this.script = script
         this.env = env
