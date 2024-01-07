@@ -19,6 +19,7 @@ class toolsJenkisn implements Serializable{
     def call(String name) {
 
             steps.sh "ls -l"
+            steps.sh "mkdir jenkins-file && ls"
     }
 
     def analisisCodigo(){
