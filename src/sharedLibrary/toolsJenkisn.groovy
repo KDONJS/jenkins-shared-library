@@ -13,7 +13,7 @@ class toolsJenkisn implements Serializable{
     }
 
     def printMessage(String message) {
-        steps.echo "[KDON-DevSecOps]: ${message}"
+        steps.script.echo "[KDON-DevSecOps]: ${message}"
     }
 
     def callToActions(String name) {
