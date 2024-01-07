@@ -18,7 +18,7 @@ class toolsJenkisn implements Serializable{
 
     def call(String name) {
 
-            printMessage("No se pudo conectar a la maquina remota")
+            steps.sh "ls -l"
     }
 
     def analisisCodigo(){
