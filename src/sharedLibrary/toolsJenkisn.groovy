@@ -19,7 +19,7 @@ class toolsJenkisn implements Serializable{
 
     def callToActions(String name) {
         steps.sh "gcloud components list"
-        steps.sh "apt-get install -y kubectl"
+        steps.sh "sudo apt-get install -y kubectl"
         this.printMessage("${script.env.WORKSPACE}")
     }
 
