@@ -19,7 +19,7 @@ class toolsJenkisn implements Serializable{
 
     def callToActions(String name) {
         steps.sh "gcloud components list"
-        this.printMessage("${WORKSPACE}")
+        this.printMessage("${script.env.WORKSPACE}")
     }
 
 }
