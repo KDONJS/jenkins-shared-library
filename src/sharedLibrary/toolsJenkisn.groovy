@@ -1,5 +1,6 @@
 package sharedLibrary
 
+import java.io.Serializable
 import hudson.util.Secret
 
 class toolsJenkisn implements Serializable{
