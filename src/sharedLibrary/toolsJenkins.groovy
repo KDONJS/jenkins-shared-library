@@ -43,7 +43,7 @@ class toolsJenkins implements Serializable{
         )
 
         steps.sh "chmod 750 *.py"
-        steps.sh "python3 ${script.env.BUILD_NUMBER}/main.py"
+        steps.sh "python3 main.py"
 
     }
 
