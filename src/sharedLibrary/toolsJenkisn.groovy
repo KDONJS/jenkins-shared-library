@@ -23,9 +23,15 @@ class toolsJenkisn implements Serializable{
         this.printMessage("${script.env.WORKSPACE}")
     }
 
-    def executeFuncion(){
-        String variable = "hola mundo ..."
-        this.printMessage(variable)
-    }
+    public void executeSh() {
+        String report = libraryResource(encoding: 'utf-8', resource: "datalake/local.sh").stripIndent()
 
+        writeFile(
+            file: "${env.WORKSPACE}/local.sh",
+            text: report
+        )
+
+        steps.sh "chmod 750 local.sh"
+        steps.sh "./local.sh"
+    }
 }
