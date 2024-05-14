@@ -8,7 +8,7 @@ class toolsJenkins implements Serializable{
     def steps
     def script
 
-    toolsJenkisn(steps, script) {
+    toolsJenkins(steps, script) {
         this.steps = steps
         this.script = script
     }
