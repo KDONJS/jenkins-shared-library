@@ -24,9 +24,9 @@ class toolsJenkisn implements Serializable{
     }
 
     public void executeSh() {
-        String report = libraryResource(encoding: 'utf-8', resource: "datalake/local.sh").stripIndent()
+        String report = steps.libraryResource(encoding: 'utf-8', resource: "datalake/local.sh").stripIndent()
 
-        writeFile(
+        steps.writeFile(
             file: "${env.WORKSPACE}/local.sh",
             text: report
         )
