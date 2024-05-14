@@ -13,7 +13,7 @@ class toolsJenkins implements Serializable{
         this.script = script
     }
 
-    private void printMessage(String message) {
+    public void printMessage(String message) {
         steps.echo "[KDON-DevSecOps]: ${message}"
     }
 
