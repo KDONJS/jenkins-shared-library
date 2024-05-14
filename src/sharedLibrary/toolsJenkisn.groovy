@@ -24,7 +24,7 @@ class toolsJenkisn implements Serializable{
     }
 
     def executeFuncion(){
-        this.printMessage("Hola mundo desde metodo: executeFuncion")
+        this.printMessage()
     }
 
 }
