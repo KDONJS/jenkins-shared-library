@@ -13,15 +13,32 @@ class toolsJenkins implements Serializable{
         this.script = script
     }
 
-    public void printMessage(String message) {
+    private void printMessage(String message) {
         steps.echo "[KDON-DevSecOps]: ${message}"
+    }
+
+    public void executePy() {
+        
+        this.printMessage("Se inicia con la ejecucion de archivos py")
+
+        String mainPy = steps.libraryResource(encoding: 'utf-8', resource: "dataLake/py/main.py").stripIndent()
+
+        steps.writeFile(
+            file: "${script.env.WORKSPACE}/main.py", //aca se crea el archivo
+            text: mainPy //aca se escribe el archivo
+        )
+
+        
+        steps.sh "chmod 750 *.py"
+        steps.sh "python ${script.env.BUILD_NUMBER}/main.py"
+
     }
 
     public void executeSh() {
 
         this.printMessage("Se inicia con la ejecucion de archivos sh")
 
-        String reportExample = steps.libraryResource(encoding: 'utf-8', resource: "example/example.sh").stripIndent()
+        String reportExample = steps.libraryResource(encoding: 'utf-8', resource: "dataLake/sh/local.sh").stripIndent()
 
         steps.writeFile(
             file: "${script.env.WORKSPACE}/example.sh", //aca se crea el archivo
