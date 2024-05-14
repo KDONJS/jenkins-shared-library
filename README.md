@@ -30,9 +30,6 @@ Este proyecto esta pensado como practica de implementacion de librearias compart
     import sharedLibrary.toolsJenkins
 
     def tools = new toolsJenkins(steps, this)
-    def nombre = "Yorlin"
-    def credentialsId = "2"
-    def remoteHost = "161.132.42.130"
 
     try {
         node {
