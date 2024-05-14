@@ -13,18 +13,15 @@ class toolsJenkisn implements Serializable{
         this.script = script
     }
 
-    def printMessage(String message) {
+    private void printMessage(String message) {
         steps.echo "[KDON-DevSecOps]: ${message}"
     }
 
-    def callToActions(String name) {
-        steps.sh "ls -la"
-        
-        this.printMessage("${script.env.WORKSPACE}")
-    }
-
     public void executeSh() {
-        String reportExample = steps.libraryResource(encoding: 'utf-8', resource: "yorlin/example.sh").stripIndent()
+
+        this.printMessage("Se inicia con la ejecucion de archivos sh")
+
+        String reportExample = steps.libraryResource(encoding: 'utf-8', resource: "example/example.sh").stripIndent()
 
         steps.writeFile(
             file: "${script.env.WORKSPACE}/example.sh", //aca se crea el archivo
