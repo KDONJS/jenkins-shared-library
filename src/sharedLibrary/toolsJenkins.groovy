@@ -17,6 +17,20 @@ class toolsJenkins implements Serializable{
         steps.echo "[KDON-DevSecOps]: ${message}"
     }
 
+    public void verifyPython() {
+
+        def pythonCommand = "python"
+
+        try {
+            steps.sh 'python --version'
+        } catch (Exception e) {
+            pythonCommand = "python3"
+            steps.sh 'python3 --version'
+        }
+        
+        script.env.PYTHON_COMMAND = pythonCommand
+    }
+
     public void executePy() {
         
         this.printMessage("Se inicia con la ejecucion de archivos py")
@@ -28,7 +42,6 @@ class toolsJenkins implements Serializable{
             text: mainPy //aca se escribe el archivo
         )
 
-        
         steps.sh "chmod 750 *.py"
         steps.sh "python ${script.env.BUILD_NUMBER}/main.py"
 
