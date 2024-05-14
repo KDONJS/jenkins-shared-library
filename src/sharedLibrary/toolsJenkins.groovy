@@ -3,7 +3,7 @@ package sharedLibrary
 import java.io.Serializable
 import hudson.util.Secret
 
-class toolsJenkisn implements Serializable{
+class toolsJenkins implements Serializable{
 
     def steps
     def script
