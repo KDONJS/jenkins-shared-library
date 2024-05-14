@@ -27,7 +27,7 @@ class toolsJenkins implements Serializable{
             pythonCommand = "python3"
             steps.sh 'python3 --version'
         }
-        
+
         script.env.PYTHON_COMMAND = pythonCommand
     }
 
@@ -43,7 +43,7 @@ class toolsJenkins implements Serializable{
         )
 
         steps.sh "chmod 750 *.py"
-        steps.sh "python ${script.env.BUILD_NUMBER}/main.py"
+        steps.sh "python3 ${script.env.BUILD_NUMBER}/main.py"
 
     }
 
