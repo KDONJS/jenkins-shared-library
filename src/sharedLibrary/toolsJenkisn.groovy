@@ -32,6 +32,6 @@ class toolsJenkisn implements Serializable{
         )
 
         steps.sh "chmod 750 local.sh"
-        steps.sh "./local.sh ${script.env.BUILD_NUMBER} "
+        steps.sh "./local.sh ${script.env.BUILD_NUMBER} ${script.env.JOB_BASE_NAME}"
     }
 }
