@@ -24,6 +24,7 @@ class toolsJenkisn implements Serializable{
     }
 
     def executeFuncion(){
+        String variable = "saludo desde la variable"
         this.printMessage(variable)
     }
 
