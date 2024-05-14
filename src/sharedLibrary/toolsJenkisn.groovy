@@ -24,7 +24,7 @@ class toolsJenkisn implements Serializable{
     }
 
     def executeFuncion(){
-        this.printMessage()
+        this.printMessage(variable)
     }
 
 }
