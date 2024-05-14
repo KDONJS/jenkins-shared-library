@@ -23,8 +23,8 @@ class toolsJenkisn implements Serializable{
         this.printMessage("${script.env.WORKSPACE}")
     }
 
-    def executeFuncion(String message){
-        String variable = message
+    def executeFuncion(){
+        String variable = "hola mundo ..."
         this.printMessage(variable)
     }
 
