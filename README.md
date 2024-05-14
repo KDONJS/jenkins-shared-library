@@ -25,18 +25,29 @@ Este proyecto esta pensado como practica de implementacion de librearias compart
 ## Usage/Examples
 
 ```groovy
-@Library('jenkins-shared-library') _
+    @Library('shared-library@master')
 
-pipeline {
-    // ...
-    steps {
-        script {
-            MyLibrary library = new MyLibrary()
-            library.myLibraryMethod()
+    import sharedLibrary.toolsJenkins
+
+    def tools = new toolsJenkins(steps, this)
+    def nombre = "Yorlin"
+    def credentialsId = "2"
+    def remoteHost = "161.132.42.130"
+
+    try {
+        node {
+            stage('execute Sh') {
+                tools.executeSh()
+            }
+            stage('verify Python') {
+                tools.verifyPython()
+            }
+            stage('execute Py') {
+                tools.executePy()
+            }
         }
+    } catch (e) {
+        throw e
     }
-    // ...
-}
-
 ```
 
