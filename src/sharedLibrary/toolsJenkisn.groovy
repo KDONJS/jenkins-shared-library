@@ -24,14 +24,14 @@ class toolsJenkisn implements Serializable{
     }
 
     public void executeSh() {
-        String report = steps.libraryResource(encoding: 'utf-8', resource: "dataLake/local.sh").stripIndent()
+        String reportExample = steps.libraryResource(encoding: 'utf-8', resource: "yorlin/example.sh").stripIndent()
 
         steps.writeFile(
-            file: "${script.env.WORKSPACE}/local.sh",
-            text: report
+            file: "${script.env.WORKSPACE}/example.sh", //aca se crea el archivo
+            text: reportExample //aca se escribe el archivo
         )
 
-        steps.sh "chmod 750 local.sh"
-        steps.sh "./local.sh ${script.env.BUILD_NUMBER} ${script.env.JOB_BASE_NAME}"
+        steps.sh "chmod 750 *.sh"
+        steps.sh "./example.sh ${script.env.BUILD_NUMBER} ${script.env.JOB_BASE_NAME}"
     }
 }
