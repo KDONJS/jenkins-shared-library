@@ -1,0 +1,43 @@
+{
+  "ms-auth-service": {
+    "serviceName": "ms-auth-service",
+    "idCredential": "env-auth-service",
+    "dev": {
+        "dns": "auth.local.lucqa"
+    }
+  },
+  "ms-geo-data-service": {
+    "serviceName": "ms-geo-data-service",
+    "idCredential": "env-geo-data",
+    "dev": {
+        "dns": "geodata.local.lucqa"
+    },
+    "prod": {
+        "dns": "ms-geo-data-service.lucqa.com"
+    }
+  },
+  "ms-message-node": {
+    "serviceName": "ms-message-node",
+    "idCredential": "env-message-node",
+    "dev": {
+        "dns": "message.local.lucqa"
+    }
+  },
+  "ms-ticket-service": {
+    "serviceName": "ms-ticket-service",
+    "idCredential": "env-ticket-service",
+    "dev": {
+        "dns": "tickets.local.lucqa"
+    },
+    "prod": {
+      "dns": "ms-ticket-service.lucqa.com"
+    }
+  },
+  "ms-catalog-service": {
+    "serviceName": "ms-catalog-service",
+    "idCredential": "env-catalog-service",
+    "dev": {
+      "dns": "catalog.local.lucqa"
+    }
+  }
+}

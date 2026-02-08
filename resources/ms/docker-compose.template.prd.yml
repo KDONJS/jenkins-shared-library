@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  ${SERVICE_NAME}:
+    image: ghcr.io/lucqa-it/${SERVICE_NAME}:${IMAGE_TAG}
+    container_name: ${SERVICE_NAME}
+    restart: always
+    networks:
+      - traefik_net
+      - private_net
+      - db_net
+    env_file:
+      - ${ENV_FILE}
+    labels:
+      - "traefik.enable=true"
+
+      - "traefik.http.routers.${SERVICE_NAME}.rule=Host(`${SERVICE_NAME}.lucqa.com`)"
+      - "traefik.http.routers.${SERVICE_NAME}.entrypoints=websecure"
+      - "traefik.http.routers.${SERVICE_NAME}.tls=true"
+      - "traefik.http.routers.${SERVICE_NAME}.tls.certresolver=cf-dns"
+      - "traefik.http.services.${SERVICE_NAME}.loadbalancer.server.port=${SERVICE_PORT}"
+      - "traefik.docker.network=traefik_net"
+
+      # (Opcional) redirección HTTP → HTTPS
+      - "traefik.http.routers.${SERVICE_NAME}-http.rule=Host(`${SERVICE_NAME}.lucqa.com`)"
+      - "traefik.http.routers.${SERVICE_NAME}-http.entrypoints=web"
+      - "traefik.http.routers.${SERVICE_NAME}-http.middlewares=https-redirect@file"
+
+networks:
+  traefik_net:
+    external: true
+  private_net:
+    external: true
+  db_net:
+    external: true

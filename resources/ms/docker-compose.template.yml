@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  ${SERVICE_NAME}:
+    image: ghcr.io/lucqa-it/${SERVICE_NAME}:${IMAGE_TAG}
+    container_name: ${SERVICE_NAME}
+    restart: always
+
+    networks:
+      - traefik-net
+    env_file:
+      - ${ENV_FILE}
+
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.${SERVICE_NAME}.rule=Host(`${SERVICE_DNS}`)"
+      - "traefik.http.routers.${SERVICE_NAME}.entrypoints=${TRAEFIK_ENTRYPOINT}"
+      - "traefik.http.services.${SERVICE_NAME}.loadbalancer.server.port=${SERVICE_PORT}"
+      - "traefik.docker.network=traefik-net"
+
+networks:
+  traefik-net:
+    external: true
